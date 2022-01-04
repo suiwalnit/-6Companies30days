@@ -1,0 +1,12 @@
+m = int(input())
+n = int(input())
+k = int(input())
+
+if (m < n - k ):
+  print(m + k - 1)
+ 
+m = m - (n - k + 1)
+if(m % n == 0):
+  print(n)
+else:
+  print(m % n)
