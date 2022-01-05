@@ -1,0 +1,63 @@
+class Solution:
+    def decodedString(self, Str):
+        x = [] 
+        y = [] 
+        temp = "" 
+        result = ""  
+      
+        for i in range(len(Str)): 
+            count = 0
+      
+            
+            if (Str[i] >= '0' and Str[i] <='9'): 
+                while (Str[i] >= '0' and Str[i] <= '9'): 
+                    count = count * 10 + ord(Str[i]) - ord('0')  
+                    i += 1
+      
+                i -= 1
+                x.append(count) 
+      
+             
+            elif (Str[i] == ']'): 
+                temp = ""  
+                count = 0
+      
+                if (len(x) != 0): 
+                    count = x[-1]  
+                    x.pop() 
+      
+                while (len(y) != 0 and y[-1] !='[' ): 
+                    temp = y[-1] + temp  
+                    y.pop() 
+      
+                if (len(y) != 0 and y[-1] == '['):  
+                    y.pop()  
+      
+              
+                for j in range(count): 
+                    result = result + temp  
+      
+               
+                for j in range(len(result)): 
+                    y.append(result[j])  
+      
+                result = "" 
+      
+           
+            elif (Str[i] == '['): 
+                if (Str[i-1] >= '0' and Str[i-1] <= '9'):  
+                    y.append(Str[i])  
+      
+                else: 
+                    y.append(Str[i])  
+                    x.append(1) 
+      
+            else: 
+                y.append(Str[i]) 
+      
+
+        while len(y) != 0: 
+            result = y[-1] + result  
+            y.pop() 
+      
+        return result
