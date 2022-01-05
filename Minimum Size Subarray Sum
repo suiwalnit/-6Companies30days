@@ -1,0 +1,26 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        b = len(nums)
+        if nums == None or b == 0:
+            return 0
+        if nums[0] >= target:
+            return 1
+        
+        x ,y ,z = 0 ,0,0
+       
+        m= 10 ** 10000
+        
+        while y < b:
+            if z< target:
+                z+= nums[y]
+                y += 1
+            while z >= target:
+                if y- x < m:
+                    m = y - x
+                z -= nums[x]
+                x += 1
+                
+        if m == 10 ** 10000:
+            return 0
+        else:
+            return m
