@@ -1,0 +1,13 @@
+def findTwoElement(self,arr, n): 
+        f = [0 for i in range(n)]
+        l = []
+        for i in arr:
+            if (f[i-1] == 1):
+                l.append(i)
+            else:
+                f[i-1] = 1
+                
+        for i in range(len(f)):
+            if (f[i] == 0):
+                l.append(i+1)
+        return l    
