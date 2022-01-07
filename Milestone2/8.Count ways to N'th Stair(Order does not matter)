@@ -1,0 +1,13 @@
+
+import math
+class Solution:
+    
+    #Function to count number of ways to reach the nth stair 
+    #when order does not matter.
+    def countWays(self,m):
+        
+        mod = 1000000007
+        n = math.ceil(m//2)
+        
+        return (n+1)
+        # code here
