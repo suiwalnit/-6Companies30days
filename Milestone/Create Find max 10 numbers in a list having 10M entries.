@@ -1,1 +1,21 @@
+METHOD 1 :- 
+def sort(arr):
+  for i in range(len(arr)-1):
+    for j in range(0,len(arr)-i-1):
+      if arr[j] > arr[j+1]:
+        arr[j],arr[j+1] = arr[j+1] ,arr[j]
+  return arr[::-1]
 
+arr = list(map(int,input().split()))
+n =int(input())
+print(sort(arr)[:n])
+
+
+METHOD 2:
+def sort(arr):
+  arr.sort()
+  a = arr[::-1]
+  return a
+arr = list(map(int,input().split()))
+n =int(input())
+print(a[:n])
