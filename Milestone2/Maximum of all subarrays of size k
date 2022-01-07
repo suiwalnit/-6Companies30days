@@ -1,0 +1,14 @@
+class Solution:
+    
+    def max_of_subarrays(self,arr,n,k):
+        if n == 1:
+            return arr
+        a = []
+        i = 0
+        while i < n:
+            b = arr[i:k+i]
+            if len(b) == k:
+                a.append(max(b))
+            i = i + 1
+            
+        return a  
