@@ -1,0 +1,19 @@
+class Solution:
+	def FirstNonRepeating(self, s):
+	    freq = [0]*26
+	    q= []
+	    ans = ''
+	    for i in range(len(s)):
+	        c = s[i]
+	        freq[ord(c) -97]+=1
+	        if freq[ord(c) -97] ==1:
+	            q.append(c)
+	        else:
+	            while q and freq[ord(q[0]) -97]>1:
+	                q.pop(0)
+	        if q:
+	            ans+=q[0]
+	            
+	        else:
+	            ans +='#'
+	    return ans
