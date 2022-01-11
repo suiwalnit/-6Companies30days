@@ -1,0 +1,18 @@
+import collections
+class Solution:
+    def isValid(self, mat):
+        
+        r=collections.defaultdict(set)
+        c=collections.defaultdict(set)
+        s=collections.defaultdict(set)
+        for i in range(9):
+            for j in range(9):
+                if mat[i][j]==0:
+                    continue
+                if( mat[i][j] in r[r] or mat[i][j] in c[c] or mat[i][j] in s[(r//3,c//3)]):
+                       return 0
+                       
+                r[i].add(mat[i][j])
+                c[j].add(mat[i][j])
+                square[(i//3,j//3)].add(mat[i][j])
+        return 1
