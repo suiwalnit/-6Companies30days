@@ -1,0 +1,25 @@
+class Solution:
+    def longestMountain(self, arr: List[int]) -> int:
+        if len(arr) <3:
+            return 0
+         
+        m  =0
+        flag  = False
+        s = 0
+        i = 1
+        for i in range(1,len(arr)-1):
+            if ((arr[i-1] >=arr[i] and arr[i+1] >=arr[i])):
+                if flag == True:
+                    flag = False
+                    m = max(m,i-s+1)
+                s = i
+                
+            elif(arr[i-1] <arr[i] >arr[i+1]):
+                flag = True
+                
+        if flag == True:
+            m = max(m,len(arr) -s)
+            
+        return m
+                
+        
