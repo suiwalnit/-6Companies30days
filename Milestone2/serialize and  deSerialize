@@ -1,0 +1,29 @@
+ def serialize(self,root):
+        A = deque()
+        def dfs(root):
+            if not root:
+                A.append('null')
+                return
+            A.append(str(root.val)) 
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        return ','.join(A)
+    #code here
+
+#Function to deserialize a list and construct the tree.   
+    def deSerialize(self,data):
+        val = data.split(',')
+        self.i = 0
+        def createNode():
+            if val[self.i] =='null':
+                self.i +=1
+                return None
+            node = Treenode(int(val[self.i]))
+            self.i +=1
+            node.left = createNode()
+            node.right = createNode()
+            
+            retrun Node
+        return createNode    
+    
