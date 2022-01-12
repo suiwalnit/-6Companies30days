@@ -1,0 +1,19 @@
+ def FindMaxSum(self,c, n):
+        if n == 0:
+            return 0
+        if n == 1:
+            return a[0]
+        if n == 2:
+            return max(a[0], a[1])
+     
+        
+        x = [0]*n
+
+        x[0] = a[0]
+        x[1] = max(a[0], a[1])
+         
+       
+        for i in range(2, n):
+            x[i] = max(a[i]+x[i-2], x[i-1])
+     
+        return dp[-1]
