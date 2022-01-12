@@ -1,0 +1,13 @@
+class Solution:
+    
+    #Function to calculate the span of stockâ€™s price for all n days.
+    def calculateSpan(self,a,n):
+        s = []
+        for i in range(n):
+            c = 1
+            j = i-1
+            while j>=0 and a[j] <=a[i]:
+                c +=1
+                j-=1
+            s.append(c)    
+        return s   
