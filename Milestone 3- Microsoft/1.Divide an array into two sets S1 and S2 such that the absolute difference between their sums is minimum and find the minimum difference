@@ -1,0 +1,15 @@
+def minDifference(self,arr, n):
+	    s = sum(arr)
+	    s = 0
+        for i in range(n):
+            s += arr[i]
+        
+        return findMinRec(arr, n, 0, s)
+        
+       
+	    def findMinRec (self,arr, i, sumC,s):
+	        if (i == 0):
+	            return abs((s - sumC) -sumC)
+        
+            return min(findMinRec(arr, i - 1,sumC + arr[i - 1],s),findMinRec(arr, i - 1,sumC, s)) 
+	
