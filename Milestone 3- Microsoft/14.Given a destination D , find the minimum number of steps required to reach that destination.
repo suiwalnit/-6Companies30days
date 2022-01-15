@@ -1,0 +1,19 @@
+class Solution:
+    def minSteps(self,source , streps,  D):
+        
+        
+        
+        if (abs(source) > (D)) :
+            return sys.maxsize 
+        
+        if (source == D):
+            return steps
+    
+       
+        pos = minsteps(source + steps + 1,steps + 1, D)
+    
+      
+        neg = minsteps(source - steps - 1, steps + 1, D)
+    
+        
+        return min(pos, neg)
