@@ -1,0 +1,12 @@
+class Solution:
+
+    def amendSentence(self, s):
+        a = s[0].lower()
+        for i in s[1:]:
+            if i.islower():
+                a = a + i
+            else:
+                a =a +  ' '
+                a = a +i.lower()
+                
+        return a
