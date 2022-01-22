@@ -1,0 +1,17 @@
+def AllParenthesis(self,n):
+        res = []
+        def dfs(curr, l, r):
+            if len(curr) == 2 * n:
+                res.append(curr)
+                return 
+            if l > r and r < n:
+                curr += ')'
+                dfs(curr, l, r + 1)
+                curr = curr[:-1]
+            if l < n:
+                curr += '('
+                dfs(curr, l + 1, r)
+                curr = curr[:-1]
+        dfs('', 0, 0)
+        return res
+            
