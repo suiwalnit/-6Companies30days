@@ -1,0 +1,13 @@
+def winner(self,arr,n):
+        dct=dict()
+        arr.sort()
+        for i in arr:
+            if i in dct:
+                dct[i]+=1
+            else:
+                dct[i]=1
+        vmx=max(dct.values())
+        for i in arr:
+            if dct[i]==vmx:
+                lst=[i,vmx]
+                return lst
