@@ -1,0 +1,29 @@
+def minSwaps(self, grid: List[List[int]]) -> int:
+        size=len(grid)
+        if size==1: return 0
+        l=[]
+        cnt=0
+        
+        for i in grid:
+            cnt=0
+            for j in i[::-1]:
+                if j: break
+                cnt-=1
+            l.append(cnt)
+
+        target=size-1
+        pos=0 
+        ans=0
+        
+        while target>0:
+            pos=0
+            while pos<len(l):
+                if l[pos]+target<=0: break
+                pos+=1         
+            else:
+                return -1
+            ans+=pos
+            l.pop(pos)
+            target-=1
+        
+        return ans
