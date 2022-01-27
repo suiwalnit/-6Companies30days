@@ -1,0 +1,28 @@
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        pacific_ans, atlantic_ans = set(), set()
+        
+        #top and left edge points
+        pacific_points = [(0, i) for i in range(len(heights[0]))] + [(i, 0) for i in range(len(heights))]
+        
+        #bottom and right edge points
+        atlantic_points = [(len(heights)-1, i) for i in range(len(heights[0]))] + [(i, len(heights[0])-1) for i in range(len(heights))]
+        
+        #bfs and update res set
+        def traverse(point,prev_point,res_set):
+            row, col = point
+            row_p, col_p = prev_point
+            if point not in res_set and 0 <= row < len(heights) and 0 <= col < len(heights[0]) and heights[row][col] >= heights[row_p][col_p]:
+                res_set.add(point)
+                traverse((row+1, col), point, res_set)
+                traverse((row-1, col), point, res_set)
+                traverse((row, col+1), point, res_set)
+                traverse((row, col-1), point, res_set)
+            
+        for p in pacific_points:
+            traverse(p, p, pacific_ans)
+        
+        for p in atlantic_points:
+            traverse(p, p, atlantic_ans)    
+        
+        return pacific_ans.intersection(atlantic_ans)
