@@ -1,0 +1,13 @@
+class Solution:
+	def isWordExist(self, board, word):
+	    a = []
+	    for i in board:
+	        for j in i:
+	            a.append(j)
+	            
+	    for k in word:
+	        if k in a:
+	            a = a[a.index(k) : len(a)]
+	        else:
+	            return 0
+	    return 1        
