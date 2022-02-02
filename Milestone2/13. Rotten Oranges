@@ -1,0 +1,66 @@
+def orangesRotting(self, grid: List[List[int]]) -> int:
+        
+        """
+        1st go through the grid, add all oranges to set,
+        if rotten, add to "queue" to go over the rotting simulation
+        """
+        num_rows = len(grid)
+        num_cols = len(grid[0])
+        
+        orange_coords = set()
+        to_rot = []
+        
+        have_visited = set()
+        
+        for i in range(num_rows):
+            for j in range(num_cols):
+                cell = grid[i][j]
+                
+                if cell == 1:
+                    orange_coords.add((i,j))
+                elif cell == 2:
+                    to_rot.append((i,j))
+                    have_visited.add((i,j))
+                    
+        ## go through and rot adj oranges
+        minutes = 0 
+        next_to_rot = []
+        while to_rot:
+            i,j = to_rot.pop(0)
+            
+            orange_coords.discard((i,j)) #discard vs remove since original rotting will not and we don't want to throw an exception
+            grid[i][j] = 2
+            
+            
+            for adj_i, adj_j in [(i-1, j),
+                                 (i+1, j),
+                                 (i, j-1),
+                                 (i, j+1)]:
+                
+                next_cell = (adj_i,adj_j)
+                
+                if (adj_i >= num_rows 
+                    or adj_i < 0
+                    or adj_j >= num_cols 
+                    or adj_j < 0
+                    or next_cell in have_visited):
+                    
+                    continue #not in bounds
+
+                if grid[adj_i][adj_j] == 1:
+                    have_visited.add((adj_i,adj_j))
+                    next_to_rot.append(next_cell)
+            
+            if not to_rot:
+                if not next_to_rot:
+                    break
+                minutes += 1
+                to_rot = next_to_rot
+                next_to_rot = []
+            
+            
+        if orange_coords:
+            return -1
+        else:
+            return minutes
+        
