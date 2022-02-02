@@ -1,0 +1,10 @@
+class Solution:
+    def isPossible(self,N,prerequisites):
+        a = []
+        for i in prerequisites:
+            if i[0] in a and i[1] in a:
+                return False
+            else:
+                a.append(i[0])
+                a.append(i[1])
+        return True  
