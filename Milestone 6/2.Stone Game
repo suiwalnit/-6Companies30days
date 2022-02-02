@@ -1,0 +1,12 @@
+class Solution:
+    def stoneGame(self, piles: List[int]) -> bool:
+        deque=collections.deque(piles)
+        alice=True
+        a=b=0
+        while deque:
+            if alice:
+                a+=deque.popleft() if deque[0]>deque[-1] else deque.pop()
+            else:
+                b=deque.popleft() if deque[0]>deque[-1] else deque.pop()
+            alice=not alice
+        return a>b
