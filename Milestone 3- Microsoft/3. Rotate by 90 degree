@@ -1,0 +1,8 @@
+import numpy as np
+def rotate(matrix):
+    k=np.transpose(matrix)
+    k=k[::-1]
+    for i in range(len(k)):
+        for j in range(len(k)):
+            matrix[i][j]=k[i][j]
+    #code here
