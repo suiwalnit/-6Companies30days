@@ -1,0 +1,22 @@
+import numpy as np
+class Solution:
+
+    def __init__(self, radius: float, x_center: float, y_center: float):
+        self.x = x_center
+        self.y = y_center
+        self.rad = radius
+        self.x_min = x_center - radius
+        self.x_max = x_center + radius
+        self.y_min = y_center - radius
+        self.y_max = y_center + radius
+        
+
+    def randPoint(self) -> List[float]:
+        # Use uniform number generator in numpy
+        coords = [np.random.uniform(self.x_min, self.x_max), np.random.uniform(self.y_min, self.y_max)]
+        
+        # check that point is in circle, try again if it isn't
+        if np.sqrt((coords[0] - self.x) ** 2 + (coords[1] - self.y) **2) > self.rad:
+            return self.randPoint()
+        else:
+            return coords
