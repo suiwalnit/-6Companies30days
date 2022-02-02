@@ -1,0 +1,20 @@
+for _ in range(int(input())):
+n=int(input())
+arr=list(map(str,input().split()))
+s1=input()
+for i in range(len(s1)):
+p=s1[0:i+1]
+
+temp=[]
+for j in arr:
+if p in j[0:i+1]:
+
+temp.append(j)
+if len(temp)==0:
+print(0,end=' ')
+else:
+temp=list(set(temp))
+temp.sort()
+for k in temp:
+print(k,end=' ')
+print()
