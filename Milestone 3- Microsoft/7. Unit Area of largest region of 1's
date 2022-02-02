@@ -1,0 +1,24 @@
+def dfs(island,i,j,c):
+if i<0 or i>len(island)-1 or j<0 or j>len(island[0])-1 or island[i][j]!=1:
+return
+island[i][j]=2
+c=c+1
+dfs(island, i, j+1, c)#r
+dfs(island, i, j-1, c)#l
+dfs(island, i-1, j, c)#t
+dfs(island, i+1, j, c)#d
+dfs(island, i-1, j+1, c)#rvu
+dfs(island, i-1, j-1, c)#lvu
+dfs(island, i+1, j+1, c)#rvd
+dfs(island, i+1, j-1, c)#lvd
+
+island=[[1,1,1,0],[0,0,1,0],[0,0,0,1]]
+total=0
+for i in range(len(island)):
+for j in range(len(island[0])):
+if island[i][j]==1:
+c=0
+dfs(island,i,j,c)
+total=max(total,c)
+
+print(total)
