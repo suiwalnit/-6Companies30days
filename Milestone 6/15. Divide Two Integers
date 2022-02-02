@@ -1,0 +1,26 @@
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        if dividend == -2147483648 and divisor == -1: return 2147483647
+
+        quotient = 0
+        same_sign = (dividend > 0) == (divisor > 0)
+        len_dividend, len_divisor = dividend.bit_length(), divisor.bit_length()
+
+        if len_dividend - len_divisor > 0:
+            divisor = divisor << (len_dividend - len_divisor)
+
+        for _ in range(len_dividend - len_divisor + 1):
+            quotient <<= 1
+            
+            if same_sign:
+                remainder = dividend - divisor
+                if not remainder or (remainder > 0) == (divisor > 0):
+                    dividend, quotient = remainder, quotient + 1
+            else:
+                remainder = dividend + divisor
+                if not remainder or (remainder < 0) == (divisor > 0):
+                    dividend, quotient = remainder, quotient - 1
+
+            divisor >>= 1
+        
+        return quotient
